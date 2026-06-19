@@ -8,7 +8,7 @@
   <meta name="keywords" content="robotics, vision-language-action, thermal perception, LWIR, safe manipulation, control barrier functions, GR00T, multimodal robotics">
   <meta name="author" content="Dian Yu, Qingchuan Zhou, Bingkun Huang, Majid Khadiv, Zewen Yang">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#07100d">
+  <meta name="theme-color" content="#000000">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Safe-Night VLA">
@@ -39,13 +39,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
 
@@ -142,6 +140,10 @@
             <span class="icon"><i class="fas fa-scroll"></i></span>
             <span>arXiv</span>
           </a>
+          <a href="https://github.com/Thisanwerss/Safe-Night-VLA" target="_blank" rel="noopener" class="button project-button">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>Code</span>
+          </a>
           <a href="#full-demo" class="button project-button">
             <span class="icon"><i class="fas fa-play"></i></span>
             <span>Full Demo</span>
@@ -225,7 +227,7 @@
           <div class="framework-toolbar">
             <div>
               <p class="tagline">Interactive Framework</p>
-              <h3 id="framework-title">Frozen-backbone VLA execution graph</h3>
+              <h3 id="framework-title">System architecture: multimodal RGB-T-D input, frozen VLM, trainable diffusion transformer action head, and runtime IK plus CBF safety filter.</h3>
             </div>
             <div class="framework-controls" role="group" aria-label="Framework mode">
               <button class="framework-mode is-active" type="button" data-framework-mode="infer" aria-pressed="true">Inference</button>
@@ -250,6 +252,11 @@
                   <stop offset="58%" stop-color="#95f278"/>
                   <stop offset="100%" stop-color="#ffb64a"/>
                 </linearGradient>
+                <linearGradient id="lineGrad" gradientUnits="userSpaceOnUse" x1="35" y1="0" x2="1140" y2="0">
+                  <stop offset="0%" stop-color="#58e1ff"/>
+                  <stop offset="58%" stop-color="#95f278"/>
+                  <stop offset="100%" stop-color="#ffb64a"/>
+                </linearGradient>
                 <pattern id="lockedHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                   <rect width="8" height="8" fill="transparent"/>
                   <path d="M0 0 L0 8" stroke="#ffb64a" stroke-width="2" opacity="0.55"/>
@@ -261,106 +268,116 @@
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
-                <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-                  <path d="M2 2 L10 6 L2 10 Z" fill="#58e1ff"/>
+                <marker id="arrowHead" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M1.5 1.5 L10 5.5 L1.5 9.5 Z" fill="#58e1ff"/>
                 </marker>
-                <marker id="gradHead" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-                  <path d="M2 2 L10 6 L2 10 Z" fill="#ffb64a"/>
+                <marker id="gradHead" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M1.5 1.5 L10 5.5 L1.5 9.5 Z" fill="#ffb64a"/>
                 </marker>
               </defs>
 
-              <path class="framework-line infer-line" d="M190 245 C235 245 238 220 280 220"/>
-              <path class="framework-line infer-line" d="M190 390 C240 390 235 275 280 275"/>
-              <path class="framework-line infer-line through-frozen" d="M470 245 L545 245"/>
-              <path class="framework-line infer-line trainable-line" d="M675 245 L735 245"/>
-              <path class="framework-line infer-line trainable-line" d="M905 230 C950 220 940 165 990 165"/>
-              <path class="framework-line infer-line runtime-line" d="M905 265 C950 275 940 305 990 305"/>
-              <path class="framework-line infer-line runtime-line" d="M1070 210 L1070 392"/>
-              <path class="framework-line infer-line runtime-line" d="M1070 335 L1070 392"/>
-              <path class="framework-line infer-line trainable-line" d="M665 390 C710 390 710 320 755 305"/>
-              <path class="framework-line infer-line runtime-line" d="M665 390 C790 430 930 430 1015 420"/>
-
-              <path class="framework-line train-forward" d="M880 345 C900 390 890 430 860 452"/>
-              <path class="framework-line backprop-line" d="M830 452 L830 345"/>
-              <path class="framework-line backprop-line" d="M760 493 C700 486 625 410 610 305"/>
-              <path class="framework-line backprop-line blocked-gradient" d="M545 245 L490 245"/>
-
               <g class="fw-node input-node active-always">
-                <rect class="node-shell" x="35" y="185" width="155" height="120" rx="8"/>
-                <text class="node-title" x="58" y="218">RGB-T-D Input</text>
-                <rect class="mini-sensor rgb" x="58" y="238" width="82" height="12" rx="3"/>
-                <rect class="mini-sensor thermal" x="58" y="258" width="102" height="12" rx="3"/>
-                <rect class="mini-sensor depth" x="58" y="278" width="72" height="12" rx="3"/>
-                <text class="node-note" x="58" y="326">visible + thermal + depth</text>
+                <rect class="architecture-frame input-frame" x="35" y="45" width="315" height="265" rx="14"/>
+                <text class="module-label" x="192" y="76" text-anchor="middle">Multimodal Input</text>
+                <text class="sensor-label thermal-label" x="64" y="178" text-anchor="middle" transform="rotate(-90 64 178)">Thermal</text>
+                <text class="sensor-label rgb-label" x="64" y="238" text-anchor="middle" transform="rotate(-90 64 238)">RGB</text>
+                <text class="sensor-label depth-label" x="64" y="292" text-anchor="middle" transform="rotate(-90 64 292)">Depth</text>
+                <rect class="input-cell task-cell" x="88" y="96" width="72" height="38" rx="5"/>
+                <rect class="input-cell task-cell" x="170" y="96" width="72" height="38" rx="5"/>
+                <rect class="input-cell task-cell" x="252" y="96" width="72" height="38" rx="5"/>
+                <text class="cell-text" x="124" y="119" text-anchor="middle">Thermal</text>
+                <text class="cell-text" x="206" y="119" text-anchor="middle">Buried</text>
+                <text class="cell-text" x="288" y="119" text-anchor="middle">Illusion</text>
+                <rect class="input-cell thermal" x="88" y="145" width="72" height="42" rx="4"/>
+                <rect class="input-cell thermal" x="170" y="145" width="72" height="42" rx="4"/>
+                <rect class="input-cell thermal" x="252" y="145" width="72" height="42" rx="4"/>
+                <rect class="input-cell rgb" x="88" y="202" width="72" height="42" rx="4"/>
+                <rect class="input-cell rgb" x="170" y="202" width="72" height="42" rx="4"/>
+                <rect class="input-cell rgb" x="252" y="202" width="72" height="42" rx="4"/>
+                <rect class="input-cell depth" x="88" y="258" width="72" height="42" rx="4"/>
+                <rect class="input-cell depth" x="170" y="258" width="72" height="42" rx="4"/>
+                <rect class="input-cell depth" x="252" y="258" width="72" height="42" rx="4"/>
               </g>
 
               <g class="fw-node prompt-node active-always">
-                <rect class="node-shell" x="35" y="350" width="155" height="80" rx="8"/>
-                <text class="node-title" x="58" y="384">Language</text>
-                <text class="node-note" x="58" y="410">task prompt</text>
+                <rect class="architecture-frame language-frame" x="35" y="350" width="315" height="120" rx="14"/>
+                <text class="module-label" x="192" y="382" text-anchor="middle">Language Instruction</text>
+                <rect class="prompt-bar cold" x="86" y="402" width="210" height="18" rx="4"/>
+                <rect class="prompt-bar hot" x="86" y="426" width="210" height="18" rx="4"/>
+                <rect class="prompt-bar buried" x="86" y="450" width="210" height="18" rx="4"/>
+                <text class="prompt-text" x="191" y="416" text-anchor="middle">"Pick the cold water bottle"</text>
+                <text class="prompt-text" x="191" y="440" text-anchor="middle">"Pick the hot water bottle"</text>
+                <text class="prompt-text" x="191" y="464" text-anchor="middle">"Dig up the buried hot object"</text>
               </g>
 
               <g class="fw-node frozen-node">
-                <rect class="node-shell" x="280" y="150" width="190" height="190" rx="10"/>
-                <rect class="node-hatch" x="280" y="150" width="190" height="190" rx="10"/>
-                <text class="node-title" x="312" y="188">Frozen VLM</text>
-                <rect class="inner-block" x="310" y="210" width="130" height="42" rx="7"/>
-                <text class="inner-text" x="330" y="236">Vision Encoder</text>
-                <rect class="inner-block" x="310" y="268" width="130" height="42" rx="7"/>
-                <text class="inner-text" x="350" y="294">LLM</text>
-                <text class="status-text locked" x="325" y="362">LOCKED WEIGHTS</text>
-              </g>
-
-              <g class="stop-gradient-mark">
-                <rect x="497" y="198" width="11" height="94" rx="4"/>
-                <text class="node-note" x="482" y="318">stop gradient</text>
-              </g>
-
-              <g class="fw-node trainable-node projector-node">
-                <rect class="node-shell" x="545" y="185" width="130" height="120" rx="9"/>
-                <text class="node-title" x="575" y="220">Projector</text>
-                <text class="node-note" x="575" y="246">VL LayerNorm</text>
-                <text class="status-text trainable" x="572" y="285">TRAINABLE</text>
-              </g>
-
-              <g class="fw-node trainable-node dit-node">
-                <rect class="node-shell" x="735" y="135" width="170" height="210" rx="12"/>
-                <text class="node-title" x="792" y="180">DiT</text>
-                <text class="node-note" x="775" y="210">action head</text>
-                <path class="dit-wave" d="M772 260 C790 238 812 282 832 260 C850 238 870 282 888 260"/>
-                <text class="status-text trainable" x="782" y="320">FLOW MATCHING</text>
+                <rect class="architecture-frame frozen-frame" x="445" y="55" width="205" height="285" rx="14"/>
+                <rect class="node-hatch" x="445" y="55" width="205" height="285" rx="14"/>
+                <text class="module-label" x="548" y="90" text-anchor="middle">Frozen VLM</text>
+                <rect class="token-stack vision-tokens" x="465" y="122" width="18" height="178" rx="3"/>
+                <rect class="vlm-block" x="510" y="116" width="78" height="170" rx="10"/>
+                <text class="vlm-text" x="549" y="210" text-anchor="middle">VLM</text>
+                <rect class="token-stack vlm-tokens" x="612" y="122" width="18" height="178" rx="3"/>
+                <text class="status-text locked" x="548" y="320" text-anchor="middle">LOCKED WEIGHTS</text>
               </g>
 
               <g class="fw-node state-node active-always">
-                <rect class="node-shell" x="515" y="350" width="150" height="80" rx="8"/>
-                <text class="node-title" x="550" y="384">Robot State</text>
-                <text class="node-note" x="550" y="410">q, gripper, EE pose</text>
+                <rect class="architecture-frame state-frame" x="445" y="365" width="205" height="105" rx="14"/>
+                <text class="module-label" x="548" y="397" text-anchor="middle">Robot State</text>
+                <rect class="robot-state-icon" x="475" y="412" width="62" height="38" rx="8"/>
+                <rect class="state-token" x="574" y="410" width="16" height="14" rx="2"/>
+                <rect class="state-token" x="574" y="429" width="16" height="14" rx="2"/>
+                <rect class="state-token" x="574" y="448" width="16" height="14" rx="2"/>
+                <text class="node-note" x="608" y="430">q, EE pose</text>
+                <text class="node-note" x="608" y="450">gripper</text>
               </g>
 
-              <g class="fw-node runtime-node">
-                <rect class="node-shell" x="990" y="120" width="135" height="90" rx="8"/>
-                <text class="node-title" x="1024" y="158">IK Solver</text>
-                <text class="node-note" x="1024" y="184">track EE delta</text>
+              <g class="fw-node trainable-node dit-node">
+                <rect class="dit-shell" x="725" y="55" width="150" height="415" rx="16"/>
+                <text class="module-label trainable-label" x="800" y="92" text-anchor="middle">Trainable</text>
+                <text class="dit-title" x="800" y="252" text-anchor="middle">DiT</text>
+                <text class="node-note" x="800" y="286" text-anchor="middle">diffusion transformer</text>
+                <text class="node-note" x="800" y="306" text-anchor="middle">action head</text>
+                <text class="status-text trainable" x="800" y="444" text-anchor="middle">TRAINABLE</text>
               </g>
 
-              <g class="fw-node runtime-node">
-                <rect class="node-shell" x="990" y="260" width="135" height="90" rx="8"/>
-                <text class="node-title" x="1016" y="298">CBF-QP</text>
-                <text class="node-note" x="1016" y="324">safe set filter</text>
+              <g class="fw-node runtime-node safety-node">
+                <rect class="architecture-frame safety-frame" x="935" y="55" width="205" height="415" rx="16"/>
+                <text class="module-label" x="1038" y="92" text-anchor="middle">Safety Filter</text>
+                <rect class="safety-block" x="970" y="130" width="136" height="112" rx="22"/>
+                <text class="safety-text" x="1038" y="193" text-anchor="middle">IK Solver</text>
+                <rect class="safety-block" x="970" y="318" width="136" height="112" rx="22"/>
+                <text class="safety-text" x="1038" y="381" text-anchor="middle">CBF</text>
               </g>
 
               <g class="fw-node output-node active-always">
-                <rect class="node-shell" x="990" y="390" width="135" height="70" rx="8"/>
-                <text class="node-title" x="1018" y="424">Safe Action</text>
-                <text class="node-note" x="1018" y="448">Delta q</text>
+                <rect class="node-shell" x="965" y="485" width="146" height="50" rx="8"/>
+                <text class="node-title" x="1038" y="506" text-anchor="middle">Safe Action</text>
+                <text class="node-note" x="1038" y="526" text-anchor="middle">Delta q</text>
               </g>
 
               <g class="fw-node loss-node">
-                <rect class="node-shell" x="720" y="452" width="220" height="86" rx="9"/>
-                <text class="node-title" x="830" y="482" text-anchor="middle">Action Loss</text>
-                <text class="node-note" x="830" y="508" text-anchor="middle">imitation target</text>
-                <text class="node-note" x="830" y="528" text-anchor="middle">gradients update head</text>
+                <rect class="node-shell" x="470" y="486" width="220" height="56" rx="9"/>
+                <text class="node-title" x="580" y="510" text-anchor="middle">Action Loss</text>
+                <text class="node-note" x="580" y="532" text-anchor="middle">updates DiT action head</text>
               </g>
+
+              <g class="stop-gradient-mark">
+                <rect x="685" y="176" width="11" height="62" rx="4"/>
+                <text class="node-note" x="704" y="216">stop gradient</text>
+              </g>
+
+              <path class="framework-line infer-line" d="M350 185 L432 185"/>
+              <path class="framework-line infer-line" d="M350 400 C392 400 392 270 432 270"/>
+              <path class="framework-line infer-line through-frozen" d="M650 205 L712 205"/>
+              <path class="framework-line infer-line trainable-line" d="M650 420 C692 420 688 305 712 305"/>
+              <path class="framework-line infer-line trainable-line" d="M875 260 L922 260"/>
+              <path class="framework-line infer-line runtime-line" d="M1038 242 L1038 306"/>
+              <path class="framework-line infer-line runtime-line" d="M1038 430 L1038 472"/>
+
+              <path class="framework-line train-forward" d="M770 470 C740 505 720 514 690 514"/>
+              <path class="framework-line backprop-line loss-to-dit-line" d="M690 514 C670 460 680 386 718 360"/>
+              <path class="framework-line backprop-line blocked-gradient" d="M712 205 L650 205"/>
             </svg>
           </div>
         </section>
@@ -374,12 +391,7 @@
           <h2>Three RGB failure modes, one physical benchmark.</h2>
         </div>
 
-        <figure class="wide-figure compact">
-          <img src="static/images/fig-modalities.jpg" alt="Thermal, RGB, and depth comparison for thermal state recognition, subsurface localization, and illusion rejection" loading="lazy">
-          <figcaption>Thermal observations reveal states that RGB and depth alone cannot reliably expose.</figcaption>
-        </figure>
-
-        <div id="scenario-carousel" class="carousel results-carousel">
+        <div id="scenario-grid" class="scenario-grid">
           <article class="scenario-card">
             <img src="static/images/fig-temperature.jpg" alt="Temperature-conditioned manipulation setup" loading="lazy">
             <div class="scenario-copy">
