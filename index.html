@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Safe-Night VLA">
+  <meta name="description" content="Thermal-perceptive Vision-Language-Action models for safety-critical manipulation with LWIR sensing, depth, and CBF runtime safety.">
+  <meta name="keywords" content="robotics, vision-language-action, thermal perception, LWIR, safe manipulation, control barrier functions, GR00T, multimodal robotics">
+  <meta name="author" content="Dian Yu, Qingchuan Zhou, Bingkun Huang, Majid Khadiv, Zewen Yang">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#07100d">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Safe-Night VLA">
+  <meta property="og:title" content="Safe-Night VLA">
+  <meta property="og:description" content="Seeing the unseen via thermal-perceptive Vision-Language-Action models for safety-critical manipulation.">
+  <meta property="og:image" content="static/images/social_preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Safe-Night VLA">
+  <meta name="twitter:description" content="Thermal-perceptive VLA models for safety-critical manipulation.">
+  <meta name="twitter:image" content="static/images/social_preview.jpg">
+
+  <meta name="citation_title" content="Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation">
+  <meta name="citation_author" content="Yu, Dian">
+  <meta name="citation_author" content="Zhou, Qingchuan">
+  <meta name="citation_author" content="Huang, Bingkun">
+  <meta name="citation_author" content="Khadiv, Majid">
+  <meta name="citation_author" content="Yang, Zewen">
+  <meta name="citation_publication_date" content="2026/03/05">
+  <meta name="citation_pdf_url" content="static/pdfs/safenight-vla.pdf">
+
+  <title>Safe-Night VLA | Thermal-Perceptive VLA for Safety-Critical Manipulation</title>
+
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation",
+    "author": [
+      {"@type": "Person", "name": "Dian Yu"},
+      {"@type": "Person", "name": "Qingchuan Zhou"},
+      {"@type": "Person", "name": "Bingkun Huang"},
+      {"@type": "Person", "name": "Majid Khadiv"},
+      {"@type": "Person", "name": "Zewen Yang"}
+    ],
+    "datePublished": "2026-03-05",
+    "url": "https://arxiv.org/abs/2603.05754",
+    "image": "static/images/social_preview.jpg",
+    "keywords": ["robotics", "vision-language-action", "thermal perception", "safe manipulation", "control barrier functions"],
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+
+<body>
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <nav class="site-nav" aria-label="Project navigation">
+    <a class="brand" href="#top" aria-label="Safe-Night VLA home">
+      <span class="brand-mark"></span>
+      <span>Safe-Night VLA</span>
+    </a>
+    <div class="nav-links">
+      <a href="#method">Method</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#results">Results</a>
+      <a href="#bibtex">BibTeX</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="project-hero" id="top">
+      <div class="hero-background" aria-hidden="true"></div>
+      <video class="hero-switch-video" autoplay muted loop playsinline preload="metadata" poster="static/images/multimodal-switch-poster.jpg" aria-hidden="true">
+        <source src="static/videos/safenight-multimodal-switch.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container is-max-widescreen hero-content">
+        <p class="eyebrow">Thermal perception + language action + runtime safety</p>
+        <h1>Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation</h1>
+        <p class="hero-copy">
+          Safe-Night VLA equips a pre-trained VLA policy with synchronized RGB, LWIR thermal, and depth observations, then constrains execution through a CBF-QP safety filter for thermodynamic and low-light manipulation.
+        </p>
+
+        <div class="publication-authors">
+          <span class="author-block">Dian Yu<sup>*</sup></span>
+          <span class="author-block">Qingchuan Zhou<sup>*</sup></span>
+          <span class="author-block">Bingkun Huang</span>
+          <span class="author-block">Majid Khadiv</span>
+          <span class="author-block">Zewen Yang<sup>&dagger;</sup></span>
+        </div>
+        <p class="affiliation">Munich Institute of Robotics and Machine Intelligence, Technical University of Munich</p>
+        <p class="equal-note"><sup>*</sup>Equal contribution. <sup>&dagger;</sup>Corresponding author.</p>
+        <p class="acceptance-line">
+          <span class="ribbon ribbon-1" aria-hidden="true"></span>
+          <span class="ribbon ribbon-2" aria-hidden="true"></span>
+          <span class="ribbon ribbon-3" aria-hidden="true"></span>
+          <span class="ribbon ribbon-4" aria-hidden="true"></span>
+          <span class="ribbon ribbon-5" aria-hidden="true"></span>
+          <span class="ribbon ribbon-6" aria-hidden="true"></span>
+          <span class="ribbon ribbon-7" aria-hidden="true"></span>
+          <span class="ribbon ribbon-8" aria-hidden="true"></span>
+          <span class="ribbon ribbon-9" aria-hidden="true"></span>
+          <span class="ribbon ribbon-10" aria-hidden="true"></span>
+          <span class="ribbon ribbon-11" aria-hidden="true"></span>
+          <span class="ribbon ribbon-12" aria-hidden="true"></span>
+          <span class="ribbon ribbon-13" aria-hidden="true"></span>
+          <span class="ribbon ribbon-14" aria-hidden="true"></span>
+          <span class="ribbon ribbon-15" aria-hidden="true"></span>
+          <span class="ribbon ribbon-16" aria-hidden="true"></span>
+          <span class="ribbon ribbon-17" aria-hidden="true"></span>
+          <span class="ribbon ribbon-18" aria-hidden="true"></span>
+          <span class="acceptance-text">This paper has been accepted to the 2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2026).</span>
+        </p>
+
+        <div class="publication-links" aria-label="Paper links">
+          <a href="static/pdfs/safenight-vla.pdf" target="_blank" rel="noopener" class="button project-button">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
+          <a href="https://arxiv.org/abs/2603.05754" target="_blank" rel="noopener" class="button project-button">
+            <span class="icon"><i class="fas fa-scroll"></i></span>
+            <span>arXiv</span>
+          </a>
+          <a href="#full-demo" class="button project-button">
+            <span class="icon"><i class="fas fa-play"></i></span>
+            <span>Full Demo</span>
+          </a>
+          <a href="#bibtex" class="button project-button ghost">
+            <span class="icon"><i class="fas fa-quote-right"></i></span>
+            <span>BibTeX</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section abstract-section">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="section-kicker">Abstract</p>
+          <h2>Robots should reason about what RGB cannot see.</h2>
+        </div>
+        <div class="content research-copy">
+          <p>
+            Current VLA policies rely heavily on RGB observations, which makes thermodynamic state, buried targets, and optical deception hard to resolve. Safe-Night VLA adds LWIR thermal perception to a frozen vision-language backbone and trains only the action-side components, allowing the policy to ground prompts such as hot, cold, and buried in non-visible physical evidence.
+          </p>
+          <p>
+            The framework is paired with a runtime control barrier function filter. The VLA still proposes task-driven Cartesian intent, while the CBF-QP layer converts it into safe joint displacements under modeled workspace constraints. The paper evaluates this combination on a Franka robot across temperature-conditioned manipulation, subsurface localization, and reflection disambiguation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="full-demo">
+      <div class="container is-max-widescreen">
+        <div class="section-heading">
+          <p class="section-kicker">Full Demo</p>
+          <h2>Safe-Night VLA in action.</h2>
+        </div>
+        <figure class="demo-video-frame">
+          <video class="demo-video" controls playsinline preload="metadata" poster="static/images/hero-poster.jpg">
+            <source src="static/videos/safenight-vla-demo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Click play to watch the full Safe-Night VLA robot demonstration.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section dark-band" id="method">
+      <div class="container is-max-widescreen">
+        <div class="section-heading">
+          <p class="section-kicker">Method</p>
+          <h2>A thermal-aware VLA stack with a hard safety layer.</h2>
+        </div>
+
+        <div class="pipeline-grid">
+          <article class="pipeline-step">
+            <span class="step-index">01</span>
+            <h3>Three synchronized views</h3>
+            <p>RGB carries scene context, thermal pseudo-color exposes LWIR heat signatures, and depth supplies illumination-invariant geometry.</p>
+          </article>
+          <article class="pipeline-step">
+            <span class="step-index">02</span>
+            <h3>Frozen VLM backbone</h3>
+            <p>The visual-language encoder is kept frozen to preserve pre-trained semantic structure while adapting to pseudo-color thermal cues.</p>
+          </article>
+          <article class="pipeline-step">
+            <span class="step-index">03</span>
+            <h3>Trainable DiT action head</h3>
+            <p>The action head learns to translate multimodal tokens and language prompts into 6-DoF end-effector deltas plus gripper commands.</p>
+          </article>
+          <article class="pipeline-step">
+            <span class="step-index">04</span>
+            <h3>CBF-QP safety filter</h3>
+            <p>A post-hoc quadratic program enforces joint limits and workspace barriers before robot execution.</p>
+          </article>
+        </div>
+
+        <figure class="wide-figure">
+          <img src="static/images/fig-architecture.png" alt="Safe-Night VLA system architecture with multimodal input, frozen VLM, trainable DiT, and safety filter" loading="lazy">
+          <figcaption>System architecture: multimodal RGB-T-D input, frozen VLM, trainable diffusion transformer action head, and runtime IK plus CBF safety filter.</figcaption>
+        </figure>
+
+        <section class="framework-panel" data-mode="infer" aria-labelledby="framework-title">
+          <div class="framework-toolbar">
+            <div>
+              <p class="tagline">Interactive Framework</p>
+              <h3 id="framework-title">Frozen-backbone VLA execution graph</h3>
+            </div>
+            <div class="framework-controls" role="group" aria-label="Framework mode">
+              <button class="framework-mode is-active" type="button" data-framework-mode="infer" aria-pressed="true">Inference</button>
+              <button class="framework-mode" type="button" data-framework-mode="train" aria-pressed="false">Fine-tuning</button>
+            </div>
+          </div>
+
+          <div class="framework-canvas" role="img" aria-label="Interactive Safe-Night VLA framework diagram">
+            <svg class="framework-svg" viewBox="0 0 1180 560" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="nodeCool" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#15302d"/>
+                  <stop offset="100%" stop-color="#0d1715"/>
+                </linearGradient>
+                <linearGradient id="nodeHot" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#22382e"/>
+                  <stop offset="48%" stop-color="#14342f"/>
+                  <stop offset="100%" stop-color="#211b12"/>
+                </linearGradient>
+                <linearGradient id="signalGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#58e1ff"/>
+                  <stop offset="58%" stop-color="#95f278"/>
+                  <stop offset="100%" stop-color="#ffb64a"/>
+                </linearGradient>
+                <pattern id="lockedHatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <rect width="8" height="8" fill="transparent"/>
+                  <path d="M0 0 L0 8" stroke="#ffb64a" stroke-width="2" opacity="0.55"/>
+                </pattern>
+                <filter id="frameworkGlow" x="-25%" y="-25%" width="150%" height="150%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+                  <path d="M2 2 L10 6 L2 10 Z" fill="#58e1ff"/>
+                </marker>
+                <marker id="gradHead" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+                  <path d="M2 2 L10 6 L2 10 Z" fill="#ffb64a"/>
+                </marker>
+              </defs>
+
+              <path class="framework-line infer-line" d="M190 245 C235 245 238 220 280 220"/>
+              <path class="framework-line infer-line" d="M190 390 C240 390 235 275 280 275"/>
+              <path class="framework-line infer-line through-frozen" d="M470 245 L545 245"/>
+              <path class="framework-line infer-line trainable-line" d="M675 245 L735 245"/>
+              <path class="framework-line infer-line trainable-line" d="M905 230 C950 220 940 165 990 165"/>
+              <path class="framework-line infer-line runtime-line" d="M905 265 C950 275 940 305 990 305"/>
+              <path class="framework-line infer-line runtime-line" d="M1070 210 L1070 392"/>
+              <path class="framework-line infer-line runtime-line" d="M1070 335 L1070 392"/>
+              <path class="framework-line infer-line trainable-line" d="M665 390 C710 390 710 320 755 305"/>
+              <path class="framework-line infer-line runtime-line" d="M665 390 C790 430 930 430 1015 420"/>
+
+              <path class="framework-line train-forward" d="M880 345 C900 390 890 430 860 452"/>
+              <path class="framework-line backprop-line" d="M830 452 L830 345"/>
+              <path class="framework-line backprop-line" d="M760 493 C700 486 625 410 610 305"/>
+              <path class="framework-line backprop-line blocked-gradient" d="M545 245 L490 245"/>
+
+              <g class="fw-node input-node active-always">
+                <rect class="node-shell" x="35" y="185" width="155" height="120" rx="8"/>
+                <text class="node-title" x="58" y="218">RGB-T-D Input</text>
+                <rect class="mini-sensor rgb" x="58" y="238" width="82" height="12" rx="3"/>
+                <rect class="mini-sensor thermal" x="58" y="258" width="102" height="12" rx="3"/>
+                <rect class="mini-sensor depth" x="58" y="278" width="72" height="12" rx="3"/>
+                <text class="node-note" x="58" y="326">visible + thermal + depth</text>
+              </g>
+
+              <g class="fw-node prompt-node active-always">
+                <rect class="node-shell" x="35" y="350" width="155" height="80" rx="8"/>
+                <text class="node-title" x="58" y="384">Language</text>
+                <text class="node-note" x="58" y="410">task prompt</text>
+              </g>
+
+              <g class="fw-node frozen-node">
+                <rect class="node-shell" x="280" y="150" width="190" height="190" rx="10"/>
+                <rect class="node-hatch" x="280" y="150" width="190" height="190" rx="10"/>
+                <text class="node-title" x="312" y="188">Frozen VLM</text>
+                <rect class="inner-block" x="310" y="210" width="130" height="42" rx="7"/>
+                <text class="inner-text" x="330" y="236">Vision Encoder</text>
+                <rect class="inner-block" x="310" y="268" width="130" height="42" rx="7"/>
+                <text class="inner-text" x="350" y="294">LLM</text>
+                <text class="status-text locked" x="325" y="362">LOCKED WEIGHTS</text>
+              </g>
+
+              <g class="stop-gradient-mark">
+                <rect x="497" y="198" width="11" height="94" rx="4"/>
+                <text class="node-note" x="482" y="318">stop gradient</text>
+              </g>
+
+              <g class="fw-node trainable-node projector-node">
+                <rect class="node-shell" x="545" y="185" width="130" height="120" rx="9"/>
+                <text class="node-title" x="575" y="220">Projector</text>
+                <text class="node-note" x="575" y="246">VL LayerNorm</text>
+                <text class="status-text trainable" x="572" y="285">TRAINABLE</text>
+              </g>
+
+              <g class="fw-node trainable-node dit-node">
+                <rect class="node-shell" x="735" y="135" width="170" height="210" rx="12"/>
+                <text class="node-title" x="792" y="180">DiT</text>
+                <text class="node-note" x="775" y="210">action head</text>
+                <path class="dit-wave" d="M772 260 C790 238 812 282 832 260 C850 238 870 282 888 260"/>
+                <text class="status-text trainable" x="782" y="320">FLOW MATCHING</text>
+              </g>
+
+              <g class="fw-node state-node active-always">
+                <rect class="node-shell" x="515" y="350" width="150" height="80" rx="8"/>
+                <text class="node-title" x="550" y="384">Robot State</text>
+                <text class="node-note" x="550" y="410">q, gripper, EE pose</text>
+              </g>
+
+              <g class="fw-node runtime-node">
+                <rect class="node-shell" x="990" y="120" width="135" height="90" rx="8"/>
+                <text class="node-title" x="1024" y="158">IK Solver</text>
+                <text class="node-note" x="1024" y="184">track EE delta</text>
+              </g>
+
+              <g class="fw-node runtime-node">
+                <rect class="node-shell" x="990" y="260" width="135" height="90" rx="8"/>
+                <text class="node-title" x="1016" y="298">CBF-QP</text>
+                <text class="node-note" x="1016" y="324">safe set filter</text>
+              </g>
+
+              <g class="fw-node output-node active-always">
+                <rect class="node-shell" x="990" y="390" width="135" height="70" rx="8"/>
+                <text class="node-title" x="1018" y="424">Safe Action</text>
+                <text class="node-note" x="1018" y="448">Delta q</text>
+              </g>
+
+              <g class="fw-node loss-node">
+                <rect class="node-shell" x="720" y="452" width="220" height="86" rx="9"/>
+                <text class="node-title" x="830" y="482" text-anchor="middle">Action Loss</text>
+                <text class="node-note" x="830" y="508" text-anchor="middle">imitation target</text>
+                <text class="node-note" x="830" y="528" text-anchor="middle">gradients update head</text>
+              </g>
+            </svg>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" id="experiments">
+      <div class="container is-max-widescreen">
+        <div class="section-heading">
+          <p class="section-kicker">Experiments</p>
+          <h2>Three RGB failure modes, one physical benchmark.</h2>
+        </div>
+
+        <figure class="wide-figure compact">
+          <img src="static/images/fig-modalities.jpg" alt="Thermal, RGB, and depth comparison for thermal state recognition, subsurface localization, and illusion rejection" loading="lazy">
+          <figcaption>Thermal observations reveal states that RGB and depth alone cannot reliably expose.</figcaption>
+        </figure>
+
+        <div id="scenario-carousel" class="carousel results-carousel">
+          <article class="scenario-card">
+            <img src="static/images/fig-temperature.jpg" alt="Temperature-conditioned manipulation setup" loading="lazy">
+            <div class="scenario-copy">
+              <p class="tagline">Scenario I</p>
+              <h3>Temperature-conditioned manipulation</h3>
+              <p>The robot must pick the hot or cold bottle when the objects are visually similar, including runtime scenes with an unseen heated distractor.</p>
+            </div>
+          </article>
+          <article class="scenario-card">
+            <img src="static/images/fig-subsurface.png" alt="Subsurface localization setup" loading="lazy">
+            <div class="scenario-copy">
+              <p class="tagline">Scenario II</p>
+              <h3>Subsurface localization</h3>
+              <p>A thermal bloom through granular media guides the policy toward a buried hot object that is almost invisible in RGB.</p>
+            </div>
+          </article>
+          <article class="scenario-card">
+            <img src="static/images/fig-mirror.png" alt="Mirror-induced ambiguity setup" loading="lazy">
+            <div class="scenario-copy">
+              <p class="tagline">Scenario III</p>
+              <h3>Illusion rejection</h3>
+              <p>LWIR attenuation in common glass helps reject mirror reflections that appear plausible in visible light.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="container is-max-widescreen">
+        <div class="section-heading">
+          <p class="section-kicker">Results</p>
+          <h2>Thermal cues solve hidden semantics; safety filtering keeps execution bounded.</h2>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card">
+            <p class="metric-label">Dim/Night + Safety</p>
+            <p class="metric-value">64%</p>
+            <p>Hot/cold bottle success for Safe-Night VLA, compared with 0% for RGB-only.</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-label">Dim/Night + Safety</p>
+            <p class="metric-value">72%</p>
+            <p>Buried object localization success for the full RGB-T-D model.</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-label">Mirror Rejection</p>
+            <p class="metric-value">17/20</p>
+            <p>Safe-Night VLA successes under dim/night light with the safety filter enabled.</p>
+          </article>
+          <article class="metric-card">
+            <p class="metric-label">Attention Mass</p>
+            <p class="metric-value">53.5%</p>
+            <p>Hot-object attention mass with thermal input, versus 16.8% when thermal is masked.</p>
+          </article>
+        </div>
+
+        <div class="columns is-variable is-6 result-columns">
+          <div class="column is-two-thirds">
+            <figure class="wide-figure table-figure">
+              <img src="static/images/fig-results-table.jpg" alt="Joint ablation table for modality and runtime safety filtering results" loading="lazy">
+              <figcaption>Joint ablation across modalities, lighting conditions, and safety filtering.</figcaption>
+            </figure>
+          </div>
+          <div class="column">
+            <figure class="wide-figure attention-figure">
+              <img src="static/images/fig-attention.png" alt="Attention ablation comparing thermal input and masked thermal input" loading="lazy">
+              <figcaption>Thermal input focuses cross-modal attention on the target heat source.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paper-section" id="paper">
+      <div class="container is-max-widescreen">
+        <div class="section-heading">
+          <p class="section-kicker">Paper</p>
+          <h2>Read the full preprint.</h2>
+        </div>
+        <iframe class="paper-frame" src="static/pdfs/safenight-vla.pdf" title="Safe-Night VLA paper PDF"></iframe>
+      </div>
+    </section>
+
+    <section class="section bibtex-section" id="bibtex">
+      <div class="container is-max-desktop">
+        <div class="bibtex-header">
+          <div>
+            <p class="section-kicker">Citation</p>
+            <h2>BibTeX</h2>
+          </div>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <span class="icon"><i class="fas fa-copy"></i></span>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@misc{yu2026nightvla,
+      title={Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation}, 
+      author={Dian Yu and Qingchuan Zhou and Bingkun Huang and Majid Khadiv and Zewen Yang},
+      year={2026},
+      eprint={2603.05754},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2603.05754}, 
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section license-section" id="license">
+      <div class="container is-max-desktop">
+        <div class="section-heading">
+          <p class="section-kicker">License</p>
+          <h2>MIT License</h2>
+        </div>
+        <div class="license-card">
+          <p>The website source code is released under the MIT License.</p>
+          <p>Unless otherwise stated, the paper, figures, videos, data, model weights, and other media assets are copyright of the authors and are not covered by the MIT License.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container is-max-desktop">
+      <p class="footer-meta">Copyright &copy; 2026 Safe-Night VLA Authors. All rights reserved.</p>
+      <p class="footer-meta">Contact: <a href="mailto:zewen.yang@tum.de">zewen.yang@tum.de</a></p>
+      <p>
+        This page follows the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>, adapted from the Nerfies project page.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

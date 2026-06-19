@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Safe-Night VLA icon">
+  <rect width="64" height="64" rx="14" fill="#07100d"/>
+  <path d="M32 8l19 7v14c0 12-7.6 21.8-19 27-11.4-5.2-19-15-19-27V15l19-7z" fill="#13231d" stroke="#58e1ff" stroke-width="3"/>
+  <path d="M23 43c7-1 11-5 12-12 1-6 5-10 10-11-2 6-1 11 3 16-5 8-14 12-25 7z" fill="#ffb64a"/>
+  <path d="M18 34c7-2 12-7 14-15 2 4 2 8 0 12-2 5-6 8-14 3z" fill="#58e1ff"/>
+  <circle cx="39" cy="27" r="5" fill="#ff5b91"/>
+</svg>
