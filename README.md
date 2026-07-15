@@ -2,87 +2,94 @@
 
 **Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation**
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-3bd5ff)](static/pdfs/safenight-vla.pdf)
 [![arXiv](https://img.shields.io/badge/arXiv-2603.05754-b31b1b)](https://arxiv.org/abs/2603.05754)
+![Conference](https://img.shields.io/badge/IROS-2026-58e1ff)
+[![License](https://img.shields.io/badge/Website-MIT-95f278)](LICENSE)
 
-Safe-Night VLA equips a pre-trained VLA policy with synchronized RGB, LWIR thermal, and depth observations, then constrains execution through a runtime IK plus CBF-QP safety filter for thermodynamic and low-light manipulation.
+Safe-Night VLA extends a pretrained vision-language-action policy with synchronized RGB, LWIR thermal, and depth observations. A runtime inverse-kinematics and control-barrier-function safety filter constrains execution for thermodynamic, low-light, and visually ambiguous manipulation tasks.
 
-This paper has been accepted to the **2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2026)**.
+Accepted at the **2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2026)**.
 
-![Safe-Night VLA preview](static/images/social_preview.jpg)
+![Safe-Night VLA system overview](static/images/overview.png)
 
 ## Authors
 
-Dian Yu*, Qingchuan Zhou*, Bingkun Huang, Majid Khadiv, Zewen Yang  
+Dian Yu\*, Qingchuan Zhou\*, Bingkun Huang, Majid Khadiv, and Zewen Yang†<br>
 Munich Institute of Robotics and Machine Intelligence, Technical University of Munich
 
-*Equal contribution. Zewen Yang is the corresponding author.*
+\* Equal contribution. † Corresponding author: [zewen.yang@tum.de](mailto:zewen.yang@tum.de)
 
-## Project Links
+## What Safe-Night VLA Adds
 
-- Paper PDF: [`static/pdfs/safenight-vla.pdf`](static/pdfs/safenight-vla.pdf)
-- arXiv: <https://arxiv.org/abs/2603.05754>
-- Code repository: <https://github.com/Thisanwerss/Safe-Night-VLA>
-- Full demo video: [`static/videos/safenight-vla-demo.mp4`](static/videos/safenight-vla-demo.mp4)
-
-## Core Idea
-
-Current VLA policies rely heavily on RGB observations, which makes thermodynamic state, buried targets, and optical deception hard to resolve. Safe-Night VLA adds LWIR thermal perception to a frozen vision-language backbone and trains only the action-side components, allowing the policy to ground prompts such as hot, cold, and buried in non-visible physical evidence.
-
-The framework is paired with a runtime control barrier function filter. The VLA proposes task-driven Cartesian intent, while the IK plus CBF-QP layer converts it into safe joint displacements under modeled workspace constraints.
+- **Thermal state recognition:** distinguishes visually similar objects using physical temperature cues.
+- **Subsurface localization:** detects heat signatures from targets hidden beneath granular material.
+- **Illusion rejection:** uses LWIR attenuation through glass to reject misleading mirror reflections.
+- **Runtime safety:** filters policy actions through inverse kinematics and a CBF-QP layer before execution.
+- **Efficient adaptation:** freezes the vision-language backbone and trains the diffusion-transformer action head.
 
 ## Method
 
-Safe-Night VLA follows a thermal-aware VLA stack with a hard runtime safety layer:
+The policy processes language instructions, robot state, and synchronized RGB-T-D observations through four stages:
 
-1. **RGB-T-D input**: synchronized RGB, LWIR thermal, and depth observations.
-2. **Frozen VLM backbone**: the visual-language encoder remains frozen to preserve pre-trained semantic structure.
-3. **Trainable diffusion transformer action head**: the action head maps multimodal tokens, robot state, and language instructions to 6-DoF end-effector deltas plus gripper commands.
-4. **Runtime IK plus CBF safety filter**: a post-hoc safety layer enforces joint limits and workspace barriers before robot execution.
+1. **Multimodal input:** RGB provides appearance, LWIR reveals heat, and depth supplies illumination-invariant geometry.
+2. **Frozen VLM:** the pretrained visual-language encoder preserves its semantic representation.
+3. **Trainable DiT action head:** multimodal tokens are mapped to 6-DoF end-effector deltas and gripper commands.
+4. **IK and CBF-QP safety filter:** proposed actions are converted into joint displacements that respect modeled joint and workspace constraints.
 
-![System architecture](static/images/fig-architecture.png)
+The project page also includes an interactive diagram for switching between inference and fine-tuning views.
 
 ## Experiments
 
-The physical benchmark targets three RGB failure modes where thermal observations reveal states that RGB and depth alone cannot reliably expose.
-
-| Scenario | Failure Mode | Preview |
-| --- | --- | --- |
-| Temperature-conditioned manipulation | The robot must pick the hot or cold bottle when visually similar objects differ by temperature. | ![Temperature-conditioned manipulation](static/images/fig-temperature.jpg) |
-| Subsurface localization | A thermal bloom through granular media guides the policy toward a buried hot object that is almost invisible in RGB. | ![Subsurface localization](static/images/fig-subsurface.png) |
-| Illusion rejection | LWIR attenuation in common glass helps reject mirror reflections that appear plausible in visible light. | ![Illusion rejection](static/images/fig-mirror.png) |
+<table>
+  <thead>
+    <tr>
+      <th align="center">1. Temperature-conditioned manipulation</th>
+      <th align="center">2. Subsurface localization</th>
+      <th align="center">3. Illusion rejection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The robot selects a hot or cold bottle even when the objects look nearly identical in RGB.</td>
+      <td>A thermal bloom guides the robot toward a buried hot object that is almost invisible in RGB.</td>
+      <td>Thermal evidence helps the policy distinguish a physical object from its mirror reflection.</td>
+    </tr>
+    <tr>
+      <td><img src="static/images/Senario_1-1.png" alt="Temperature-conditioned manipulation"></td>
+      <td><img src="static/images/Senario_2-1.png" alt="Subsurface localization"></td>
+      <td><img src="static/images/Senario_3-1.png" alt="Illusion rejection"></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Results
 
-Safe-Night VLA improves thermal state recognition, subsurface localization, and illusion rejection under dim/night conditions while keeping execution bounded through the safety filter.
+| Evaluation | Safe-Night VLA result |
+| --- | ---: |
+| Hot/cold bottle, dim/night light with safety filter | **64%** |
+| Buried object, dim/night light with safety filter | **72%** |
+| Mirror rejection, dim/night light with safety filter | **17/20** |
+| Hot-object attention mass with thermal input | **53.5%** |
 
-| Metric | Safe-Night VLA Result |
-| --- | --- |
-| Hot/cold bottle success under dim/night + safety | 64% |
-| Buried object localization under dim/night + safety | 72% |
-| Mirror rejection under dim/night + safety | 17/20 |
-| Hot-object attention mass with thermal input | 53.5% |
+The project page contains the complete joint ablation table across input modalities, illumination conditions, and runtime safety settings.
 
-![Joint ablation results](static/images/fig-results-table.jpg)
-
-![Thermal attention ablation](static/images/fig-attention.png)
 
 ## Citation
 
 ```bibtex
 @misc{yu2026nightvla,
-      title={Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation}, 
-      author={Dian Yu and Qingchuan Zhou and Bingkun Huang and Majid Khadiv and Zewen Yang},
-      year={2026},
-      eprint={2603.05754},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2603.05754}, 
+  title        = {Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation},
+  author       = {Dian Yu and Qingchuan Zhou and Bingkun Huang and Majid Khadiv and Zewen Yang},
+  year         = {2026},
+  eprint       = {2603.05754},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.RO},
+  url          = {https://arxiv.org/abs/2603.05754}
 }
 ```
 
 ## License
 
-The website source code is released under the MIT License.
+The website source code is released under the [MIT License](LICENSE).
 
-Unless otherwise stated, the paper, figures, videos, data, model weights, and other media assets are copyright of the authors and are not covered by the MIT License.
+Unless otherwise stated, the paper, figures, videos, data, model weights, and other media assets remain copyright of their authors and are not covered by the MIT License.

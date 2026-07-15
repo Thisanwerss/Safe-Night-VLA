@@ -14,14 +14,14 @@
   <meta property="og:site_name" content="Safe-Night VLA">
   <meta property="og:title" content="Safe-Night VLA">
   <meta property="og:description" content="Seeing the unseen via thermal-perceptive Vision-Language-Action models for safety-critical manipulation.">
-  <meta property="og:image" content="static/images/social_preview.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="static/images/overview.png">
+  <meta property="og:image:width" content="3270">
+  <meta property="og:image:height" content="1396">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Safe-Night VLA">
   <meta name="twitter:description" content="Thermal-perceptive VLA models for safety-critical manipulation.">
-  <meta name="twitter:image" content="static/images/social_preview.jpg">
+  <meta name="twitter:image" content="static/images/overview.png">
 
   <meta name="citation_title" content="Safe-Night VLA: Seeing the Unseen via Thermal-Perceptive Vision-Language-Action Models for Safety-Critical Manipulation">
   <meta name="citation_author" content="Yu, Dian">
@@ -30,14 +30,12 @@
   <meta name="citation_author" content="Khadiv, Majid">
   <meta name="citation_author" content="Yang, Zewen">
   <meta name="citation_publication_date" content="2026/03/05">
-  <meta name="citation_pdf_url" content="static/pdfs/safenight-vla.pdf">
 
   <title>Safe-Night VLA | Thermal-Perceptive VLA for Safety-Critical Manipulation</title>
 
-  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
@@ -61,7 +59,7 @@
     ],
     "datePublished": "2026-03-05",
     "url": "https://arxiv.org/abs/2603.05754",
-    "image": "static/images/social_preview.jpg",
+    "image": "static/images/overview.png",
     "keywords": ["robotics", "vision-language-action", "thermal perception", "safe manipulation", "control barrier functions"],
     "isAccessibleForFree": true
   }
@@ -89,7 +87,7 @@
   <main id="main-content">
     <section class="project-hero" id="top">
       <div class="hero-background" aria-hidden="true"></div>
-      <video class="hero-switch-video" autoplay muted loop playsinline preload="metadata" poster="static/images/multimodal-switch-poster.jpg" aria-hidden="true">
+      <video class="hero-switch-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
         <source src="static/videos/safenight-multimodal-switch.mp4" type="video/mp4">
       </video>
       <div class="hero-overlay" aria-hidden="true"></div>
@@ -108,7 +106,7 @@
           <span class="author-block">Zewen Yang<sup>&dagger;</sup></span>
         </div>
         <p class="affiliation">Munich Institute of Robotics and Machine Intelligence, Technical University of Munich</p>
-        <p class="equal-note"><sup>*</sup>Equal contribution. <sup>&dagger;</sup>Corresponding author.</p>
+        <p class="equal-note"><sup>*</sup>Equal contribution. <sup>&dagger;</sup>Corresponding author: <a href="mailto:zewen.yang@tum.de">zewen.yang@tum.de</a>.</p>
         <p class="acceptance-line">
           <span class="ribbon ribbon-1" aria-hidden="true"></span>
           <span class="ribbon ribbon-2" aria-hidden="true"></span>
@@ -131,11 +129,7 @@
           <span class="acceptance-text">This paper has been accepted to the 2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2026).</span>
         </p>
 
-        <div class="publication-links" aria-label="Paper links">
-          <a href="static/pdfs/safenight-vla.pdf" target="_blank" rel="noopener" class="button project-button">
-            <span class="icon"><i class="fas fa-file-pdf"></i></span>
-            <span>Paper</span>
-          </a>
+        <div class="publication-links" aria-label="Project links">
           <a href="https://arxiv.org/abs/2603.05754" target="_blank" rel="noopener" class="button project-button">
             <span class="icon"><i class="fas fa-scroll"></i></span>
             <span>arXiv</span>
@@ -148,7 +142,7 @@
             <span class="icon"><i class="fas fa-play"></i></span>
             <span>Full Demo</span>
           </a>
-          <a href="#bibtex" class="button project-button ghost">
+          <a href="#bibtex" class="button project-button">
             <span class="icon"><i class="fas fa-quote-right"></i></span>
             <span>BibTeX</span>
           </a>
@@ -170,20 +164,9 @@
             The framework is paired with a runtime control barrier function filter. The VLA still proposes task-driven Cartesian intent, while the CBF-QP layer converts it into safe joint displacements under modeled workspace constraints. The paper evaluates this combination on a Franka robot across temperature-conditioned manipulation, subsurface localization, and reflection disambiguation.
           </p>
         </div>
-      </div>
-    </section>
-
-    <section class="section demo-section" id="full-demo">
-      <div class="container is-max-widescreen">
-        <div class="section-heading">
-          <p class="section-kicker">Full Demo</p>
-          <h2>Safe-Night VLA in action.</h2>
-        </div>
-        <figure class="demo-video-frame">
-          <video class="demo-video" controls playsinline preload="metadata" poster="static/images/hero-poster.jpg">
-            <source src="static/videos/safenight-vla-demo.mp4" type="video/mp4">
-          </video>
-          <figcaption>Click play to watch the full Safe-Night VLA robot demonstration.</figcaption>
+        <figure class="wide-figure compact concept-figure">
+          <img src="static/images/concept-1.png" alt="Thermal, RGB, and depth observations for the three Safe-Night VLA scenarios" loading="lazy">
+          <figcaption>Thermal, RGB, and depth observations reveal complementary evidence across all three scenarios.</figcaption>
         </figure>
       </div>
     </section>
@@ -219,7 +202,7 @@
         </div>
 
         <figure class="wide-figure">
-          <img src="static/images/fig-architecture.png" alt="Safe-Night VLA system architecture with multimodal input, frozen VLM, trainable DiT, and safety filter" loading="lazy">
+          <img src="static/images/overview.png" alt="Safe-Night VLA system architecture with multimodal input, frozen VLM, trainable DiT, and safety filter" loading="lazy">
           <figcaption>System architecture: multimodal RGB-T-D input, frozen VLM, trainable diffusion transformer action head, and runtime IK plus CBF safety filter.</figcaption>
         </figure>
 
@@ -393,7 +376,7 @@
 
         <div id="scenario-grid" class="scenario-grid">
           <article class="scenario-card">
-            <img src="static/images/fig-temperature.jpg" alt="Temperature-conditioned manipulation setup" loading="lazy">
+            <img src="static/images/Senario_1-1.png" alt="Temperature-conditioned manipulation setup, training images, and runtime scene" loading="lazy">
             <div class="scenario-copy">
               <p class="tagline">Scenario I</p>
               <h3>Temperature-conditioned manipulation</h3>
@@ -401,7 +384,7 @@
             </div>
           </article>
           <article class="scenario-card">
-            <img src="static/images/fig-subsurface.png" alt="Subsurface localization setup" loading="lazy">
+            <img src="static/images/Senario_2-1.png" alt="Subsurface localization setup, training images, and runtime scene" loading="lazy">
             <div class="scenario-copy">
               <p class="tagline">Scenario II</p>
               <h3>Subsurface localization</h3>
@@ -409,7 +392,7 @@
             </div>
           </article>
           <article class="scenario-card">
-            <img src="static/images/fig-mirror.png" alt="Mirror-induced ambiguity setup" loading="lazy">
+            <img src="static/images/Senario_3-1.png" alt="Illusion-rejection setup, training images, and runtime scene" loading="lazy">
             <div class="scenario-copy">
               <p class="tagline">Scenario III</p>
               <h3>Illusion rejection</h3>
@@ -450,30 +433,90 @@
           </article>
         </div>
 
-        <div class="columns is-variable is-6 result-columns">
-          <div class="column is-two-thirds">
-            <figure class="wide-figure table-figure">
-              <img src="static/images/fig-results-table.jpg" alt="Joint ablation table for modality and runtime safety filtering results" loading="lazy">
-              <figcaption>Joint ablation across modalities, lighting conditions, and safety filtering.</figcaption>
-            </figure>
+        <div class="results-table-shell">
+          <div class="results-table-scroll" role="region" aria-label="Joint ablation results" tabindex="0">
+            <table class="results-data-table">
+              <caption>Joint ablation of input modalities and runtime safety filtering under normal and dim/night illumination.</caption>
+              <thead>
+                <tr>
+                  <th rowspan="3" scope="col">Task &amp; Metric</th>
+                  <th colspan="8" scope="colgroup">Normal Light</th>
+                  <th colspan="8" scope="colgroup">Dim/Night Light</th>
+                </tr>
+                <tr>
+                  <th colspan="4" scope="colgroup">w/o Safety Filter</th>
+                  <th colspan="4" scope="colgroup">w/ Safety Filter</th>
+                  <th colspan="4" scope="colgroup">w/o Safety Filter</th>
+                  <th colspan="4" scope="colgroup">w/ Safety Filter</th>
+                </tr>
+                <tr>
+                  <th scope="col">RGB-Only</th><th scope="col">RGB-D</th><th scope="col">RGB-T</th><th scope="col">Ours</th>
+                  <th scope="col">RGB-Only</th><th scope="col">RGB-D</th><th scope="col">RGB-T</th><th scope="col">Ours</th>
+                  <th scope="col">RGB-Only</th><th scope="col">RGB-D</th><th scope="col">RGB-T</th><th scope="col">Ours</th>
+                  <th scope="col">RGB-Only</th><th scope="col">RGB-D</th><th scope="col">RGB-T</th><th scope="col">Ours</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="metric-group-row">
+                  <th colspan="17" scope="rowgroup">Success Rate (SR) &uarr; (N = 50 trials)</th>
+                </tr>
+                <tr>
+                  <th scope="row">1. Hot/Cold Bottle</th>
+                  <td>32%</td><td>24%</td><td><strong>78%</strong></td><td>72%</td>
+                  <td>42%</td><td>38%</td><td><strong>86%</strong></td><td>82%</td>
+                  <td>0%</td><td>10%</td><td>10%</td><td><strong>56%</strong></td>
+                  <td>0%</td><td>12%</td><td>22%</td><td><strong>64%</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">2. Buried Object</th>
+                  <td>14%</td><td>24%</td><td>60%</td><td><strong>74%</strong></td>
+                  <td>16%</td><td>24%</td><td>66%</td><td><strong>78%</strong></td>
+                  <td>0%</td><td>0%</td><td>42%</td><td><strong>68%</strong></td>
+                  <td>0%</td><td>2%</td><td>48%</td><td><strong>72%</strong></td>
+                </tr>
+                <tr class="metric-group-row">
+                  <th colspan="17" scope="rowgroup">Success Counts &uarr; (N = 20 trials per sub-case)</th>
+                </tr>
+                <tr>
+                  <th scope="row">3a. Single Box Success</th>
+                  <td><strong>13/20</strong></td><td>8/20</td><td>10/20</td><td>9/20</td>
+                  <td>19/20</td><td>17/20</td><td><strong>20/20</strong></td><td>17/20</td>
+                  <td>0/20</td><td>0/20</td><td>4/20</td><td><strong>12/20</strong></td>
+                  <td>9/20</td><td>9/20</td><td>17/20</td><td><strong>18/20</strong></td>
+                </tr>
+                <tr>
+                  <th scope="row">3b. Mirror Rejection Success</th>
+                  <td>2/20</td><td>3/20</td><td><strong>12/20</strong></td><td>4/20</td>
+                  <td>12/20</td><td>11/20</td><td><strong>19/20</strong></td><td>15/20</td>
+                  <td>3/20</td><td>0/20</td><td><strong>7/20</strong></td><td>5/20</td>
+                  <td>13/20</td><td>11/20</td><td>15/20</td><td><strong>17/20</strong></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="column">
-            <figure class="wide-figure attention-figure">
-              <img src="static/images/fig-attention.png" alt="Attention ablation comparing thermal input and masked thermal input" loading="lazy">
-              <figcaption>Thermal input focuses cross-modal attention on the target heat source.</figcaption>
-            </figure>
-          </div>
+        </div>
+
+        <div class="results-attention">
+          <figure class="wide-figure compact attention-figure">
+            <img src="static/images/fig-attention.png" alt="Attention ablation comparing thermal input and masked thermal input" loading="lazy">
+            <figcaption>Thermal input focuses cross-modal attention on the target heat source.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <section class="section paper-section" id="paper">
+    <section class="section demo-section" id="full-demo">
       <div class="container is-max-widescreen">
         <div class="section-heading">
-          <p class="section-kicker">Paper</p>
-          <h2>Read the full preprint.</h2>
+          <p class="section-kicker">Full Demo</p>
+          <h2>Safe-Night VLA in action.</h2>
         </div>
-        <iframe class="paper-frame" src="static/pdfs/safenight-vla.pdf" title="Safe-Night VLA paper PDF"></iframe>
+        <figure class="demo-video-frame">
+          <video class="demo-video" controls playsinline preload="metadata">
+            <source src="static/videos/safenight-vla-demo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Click play to watch the full Safe-Night VLA robot demonstration.</figcaption>
+        </figure>
       </div>
     </section>
 
