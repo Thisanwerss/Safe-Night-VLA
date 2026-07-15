@@ -151,23 +151,27 @@
     </section>
 
     <section class="section abstract-section">
-      <div class="container is-max-desktop">
-        <div class="section-heading">
-          <p class="section-kicker">Abstract</p>
-          <h2>Robots should reason about what RGB cannot see.</h2>
+      <div class="container is-max-widescreen">
+        <div class="abstract-layout">
+          <div class="abstract-copy">
+            <div class="section-heading">
+              <p class="section-kicker">Abstract</p>
+              <h2>Robots should reason about what RGB cannot see.</h2>
+            </div>
+            <div class="content research-copy">
+              <p>
+                Current VLA policies rely heavily on RGB observations, which makes thermodynamic state, buried targets, and optical deception hard to resolve. Safe-Night VLA adds LWIR thermal perception to a frozen vision-language backbone and trains only the action-side components, allowing the policy to ground prompts such as hot, cold, and buried in non-visible physical evidence.
+              </p>
+              <p>
+                The framework is paired with a runtime control barrier function filter. The VLA still proposes task-driven Cartesian intent, while the CBF-QP layer converts it into safe joint displacements under modeled workspace constraints. The paper evaluates this combination on a Franka robot across temperature-conditioned manipulation, subsurface localization, and reflection disambiguation.
+              </p>
+            </div>
+          </div>
+          <figure class="wide-figure compact concept-figure">
+            <img src="static/images/concept-1.png" alt="Thermal, RGB, and depth observations for the three Safe-Night VLA scenarios" loading="lazy">
+            <figcaption>Thermal, RGB, and depth observations reveal complementary evidence across all three scenarios.</figcaption>
+          </figure>
         </div>
-        <div class="content research-copy">
-          <p>
-            Current VLA policies rely heavily on RGB observations, which makes thermodynamic state, buried targets, and optical deception hard to resolve. Safe-Night VLA adds LWIR thermal perception to a frozen vision-language backbone and trains only the action-side components, allowing the policy to ground prompts such as hot, cold, and buried in non-visible physical evidence.
-          </p>
-          <p>
-            The framework is paired with a runtime control barrier function filter. The VLA still proposes task-driven Cartesian intent, while the CBF-QP layer converts it into safe joint displacements under modeled workspace constraints. The paper evaluates this combination on a Franka robot across temperature-conditioned manipulation, subsurface localization, and reflection disambiguation.
-          </p>
-        </div>
-        <figure class="wide-figure compact concept-figure">
-          <img src="static/images/concept-1.png" alt="Thermal, RGB, and depth observations for the three Safe-Night VLA scenarios" loading="lazy">
-          <figcaption>Thermal, RGB, and depth observations reveal complementary evidence across all three scenarios.</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -496,12 +500,6 @@
           </div>
         </div>
 
-        <div class="results-attention">
-          <figure class="wide-figure compact attention-figure">
-            <img src="static/images/fig-attention.png" alt="Attention ablation comparing thermal input and masked thermal input" loading="lazy">
-            <figcaption>Thermal input focuses cross-modal attention on the target heat source.</figcaption>
-          </figure>
-        </div>
       </div>
     </section>
 

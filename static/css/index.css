@@ -506,6 +506,29 @@ video {
   background: #000000;
 }
 
+.abstract-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: center;
+}
+
+.abstract-copy .section-heading {
+  max-width: none;
+  margin: 0 0 1.75rem;
+  text-align: left;
+}
+
+.abstract-copy .research-copy {
+  margin-bottom: 0;
+}
+
+.abstract-layout .concept-figure {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
 .dark-band {
   background: var(--bg-soft);
   color: var(--text);
@@ -1345,15 +1368,6 @@ video {
   text-align: left;
 }
 
-.results-attention {
-  max-width: 970px;
-  margin: 0 auto;
-}
-
-.attention-figure img {
-  background: #000000;
-}
-
 .bibtex-header {
   display: flex;
   align-items: flex-end;
@@ -1549,6 +1563,15 @@ code {
   .section-heading h2,
   .bibtex-header h2 {
     font-size: 1.75rem;
+  }
+
+  .abstract-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .abstract-copy .section-heading {
+    margin-bottom: 1.4rem;
   }
 
   .pipeline-grid,
